@@ -2,7 +2,7 @@
 const colors = ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'];
 const shapes = ['triAngle', 'Circle', 'Square', 'Rectangle'];
 const ele = document.getElementById("geoShape");
-ele.style.color = colors[0];
+ele.style.color = colors[0];  // For Initial stage of Triangle
 // console.log(ele.style.backgroundColor, colors[0]);
 
 let colorIndex = 0;
@@ -32,10 +32,6 @@ function shapeChange(){
     ele.style.backgroundColor = (shapes[shapeIndex] === 'triAngle') ? '' : colors[colorIndex];
     // ele.style.color = (shapes[shapeIndex] === 'triAngle') ? '' : colors[colorIndex];
     // ele.appendChild(newShape);
-    console.log(ele.innerHTML, shapes[shapeIndex]);
-    console.log(ele);
-
-
-
-        
+    // console.log(ele.innerHTML, shapes[shapeIndex]);
+    // console.log(ele);       
 }
