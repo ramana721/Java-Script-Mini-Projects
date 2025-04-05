@@ -30,7 +30,6 @@ addNoteButton.addEventListener("click", () => {
 
 
 function addNotes(note, color) {
-    // Write function to add notes on the UI
     // console.log(note, color);
     let newDiv = document.createElement("div");
     newDiv.classList = "note";
@@ -40,5 +39,6 @@ function addNotes(note, color) {
 }
 
 function removeNotes() {
-    // Write function to remove notes from the UI
+    return ;
+    
 }

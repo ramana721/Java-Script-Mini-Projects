@@ -1,0 +1,58 @@
+body{
+    /* height: 100vh; */
+    /* margin: 10%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* .geoShape, .buttonContainer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+} */
+
+
+
+button{
+    margin: 10px;
+    padding: 8px 20px;
+    background-color: rgb(6, 199, 6);
+    border-radius: 6px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+/* .geoShape{
+    padding: 20px;
+    width: 50px;
+    height: 50px;
+    margin: 40px 160px;
+} */
+
+.Circle{
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.Square{
+    width: 100px;
+    height: 100px;
+}
+
+.triAngle{
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid currentColor; /* uses inherited color */
+    background-color: transparent !important;
+}
+
+.Rectangle{
+    width: 150px;
+    height: 100px;
+}
