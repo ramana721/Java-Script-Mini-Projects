@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Finder</title>
+
+    <style>
+        .movieContainer>img {
+            max-width: 450px !important;
+            overflow-clip-margin: none !important;
+        }
+
+        .movieContainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+            justify-content: space-between;
+            align-items: center;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- <label for="searchBar"></label> -->
+    <input type="text" id = 'searchBar' placeholder="Enter Your Search here">
+    <p style="display: none;" class="movieCounter">Movies matching your Search: <span id="movieCounter"></span></p>
+    <div class="movieContainer" id="movieResult" ></div>
+    <script>
+        
+        async function fetchMovies(searchName) {
+            try {
+                const BASE_URL = 'https://www.omdbapi.com/';
+                searchName = searchName.toLowerCase();
+                const API_KEY = 'e94faa5f'; 
+                let search = `${BASE_URL}?&apikey=${API_KEY}&s=${searchName}`;
+                let response = await fetch(search);
+                if (!response.ok) throw console.error("Could not fetch Movies");
+
+                data = await response.json();
+                function displayMovies (movieList){
+                    let movieCountDisplay = document.querySelector('.movieCounter');
+                    const movieCounter = document.getElementById('movieCounter');
+                    movieCounter.innerText = movieList.length;
+                    let movieContainer = document.getElementById('movieResult');
+                    movieContainer.innerHTML = '';
+                    // movieContainer.style.display = 'block';
+                    movieCountDisplay.style.display = 'block';
+                    movieList.forEach(movie => {
+                        let curImg = document.createElement("img");
+                        curImg.setAttribute('src', movie.Poster);
+                        curImg.setAttribute('alt', movie.Title);
+                        movieContainer.appendChild(curImg);
+                    });
+                }
+                displayMovies(data.Search);
+                // console.log(data);
+                // console.log(data.Search[0].Poster);
+            } catch (error) {
+                console.log(error);
+            }
+            
+        }
+
+        function debounce(func, delay) {
+            let timeoutId;
+
+            return function(...args) {
+                clearTimeout(timeoutId);
+
+                timeoutId = setTimeout(() => {
+                func.apply(this, args);
+                }, delay);
+            };
+        }
+        const searchBar = document.getElementById('searchBar');
+        const debouncedFetchMovies = debounce(fetchMovies, 500);
+        searchBar.addEventListener('keyup', () => {
+            // console.log(searchBar.value);
+            debouncedFetchMovies(event.target.value.toLowerCase());
+            // debounce(() => fetchMovies(searchBar.value.toLowerCase()), 2000);
+        });
+        // fetchMovies('Marvel');
+
+
+
+
+//         const API_KEY = 'e94faa5f'; 
+// const BASE_URL = 'https://www.omdbapi.com/';
+// fetch(`${BASE_URL}?&apikey=${API_KEY}&s=${searchTerm}&page=${page}`)
+    </script>
+</body>
+</html>
